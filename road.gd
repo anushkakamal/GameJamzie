@@ -17,7 +17,7 @@ func _process(delta: float) -> void:
 	$Road.position.y += 1
 	if Input.is_action_just_pressed("Jump"):
 		jump_time == 30
-		print('bello')
+		print('Hello')
 
 	#if event is InputEventMouse:
 		#if event.button_index == BUTTON_LEFT and event.pressed:
