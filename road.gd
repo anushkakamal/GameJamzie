@@ -15,9 +15,13 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	$Road.position.y += 1
-	if event is InputEventMouse:
-		if event.button_index == BUTTON_LEFT and event.pressed:
-			print('press')
+	if Input.is_action_just_pressed("Jump"):
+		jump_time == 30
+		print('bello')
+
+	#if event is InputEventMouse:
+		#if event.button_index == BUTTON_LEFT and event.pressed:
+			#print('press')
 			
 	if $"Road/Sprite2D - obstacle".position.y == collision_y:
 		print('collis')
