@@ -5,20 +5,25 @@
 [ext_resource type="PackedScene" uid="uid://b4pmp7pxucsd1" path="res://car.tscn" id="3_vkqup"]
 
 [node name="Background" type="Node2D"]
+script = ExtResource("1_2j4ry")
+metadata/_edit_horizontal_guides_ = [282.0]
 
 [node name="Road" type="Node2D" parent="."]
-script = ExtResource("1_2j4ry")
 
 [node name="Sprite2D" type="Sprite2D" parent="Road"]
-position = Vector2(268, -381)
+position = Vector2(293, -331)
 scale = Vector2(8.71777, 15.7783)
 texture = ExtResource("2_878e0")
 
 [node name="Marker2D" type="Marker2D" parent="Road"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Road"]
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Road"]
+
+[node name="Sprite2D - obstacle" type="Sprite2D" parent="Road"]
+modulate = Color(1, 0.2, 1, 1)
+position = Vector2(88, -112)
+scale = Vector2(1.57812, 1.5)
+texture = ExtResource("2_878e0")
 
 [node name="Car" parent="." instance=ExtResource("3_vkqup")]
 
