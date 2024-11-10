@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://bvw45aonvbhdv"]
+
+[ext_resource type="Texture2D" uid="uid://dcwdjxq8c3q60" path="res://assets/Road_segment.png" id="1_l0sd3"]
+
+[node name="RoadManager" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(540, 960)
+texture = ExtResource("1_l0sd3")
