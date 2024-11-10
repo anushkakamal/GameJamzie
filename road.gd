@@ -29,6 +29,7 @@ func _ready() -> void:
 		
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+<<<<<<< Updated upstream
 	$Road/RoadSpawnMarker.position.y += 5
 	if $Road/RoadSpawnMarker.position.y >= 1920:
 		$Road/RoadSpawnMarker.position.y -= 1920
@@ -70,6 +71,35 @@ func _on_player_collision():
 		add_obstacle_to_platform()
 
 
+=======
+	$Road.position.y += 1
+	if Input.is_action_just_pressed("Jump"):
+		jump_time == 30
+		print('bello')
+		print(Input.is_action_just_pressed("Jump"))
+
+	#if event is InputEventMouse:
+		#if event.button_index == BUTTON_LEFT and event.pressed:
+			#print('press')
+			
+	if $"Road/Sprite2D - obstacle".position.y == collision_y:
+		print('collis')
+	
+	#if $"Sprite2D - obstacle".position.y == 
+func obstacles_working():
+	if $"Road/Sprite2D - obstacle".position.y == collision_y + 1 and Input.is_action_just_pressed("Jump"):
+		print('great work')
+		
+	elif $"Road/Sprite2D - obstacle".position.y == collision_y + 1:
+		print('didnt jump')
+		
+	
+	# Reverse direction when reaching a certain point
+	if position.x > 500:  # Adjust based on where you want the frame to stop
+		direction = Vector2.LEFT
+	elif position.x < 100:  # Adjust based on the starting point
+		direction = Vector2.RIGHT
+>>>>>>> Stashed changes
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	pass # Replace with function body.
 
