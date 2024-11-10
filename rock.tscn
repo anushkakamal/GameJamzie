@@ -1,12 +1,11 @@
 [gd_scene load_steps=3 format=3 uid="uid://7wow4st8xoym"]
 
 [ext_resource type="Script" path="res://rock.gd" id="1_tali0"]
-[ext_resource type="Texture2D" uid="uid://cghd5exu4h8cl" path="res://assets/Screenshot from 2024-11-10 10-19-33.png" id="2_50bui"]
+[ext_resource type="Texture2D" uid="uid://s5dm45db63x5" path="res://IMG_2848.PNG" id="2_1b872"]
 
 [node name="Rock" type="Node2D"]
 script = ExtResource("1_tali0")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_50bui")
-hframes = 2
-vframes = 2
+texture = ExtResource("2_1b872")
+hframes = 3

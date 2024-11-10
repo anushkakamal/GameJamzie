@@ -29,7 +29,7 @@ func _ready() -> void:
 		
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	$Road/RoadSpawnMarker.position.y += 2
+	$Road/RoadSpawnMarker.position.y += 3
 	if $Road/RoadSpawnMarker.position.y >= 1920:
 		$Road/RoadSpawnMarker.position.y -= 1920
 	
@@ -37,7 +37,7 @@ func _process(delta: float) -> void:
 		_place_rock()
 		var random = RandomNumberGenerator.new()
 		random.randomize()
-		spawner_time = random.randi_range(0,3) 
+		spawner_time = random.randi_range(0,8) 
 	spawner_time -= delta
 	
 
@@ -60,7 +60,9 @@ func add_obstacle_to_platform():
 
 func _on_player_collision():
 	# End the game if either player collides
+	#player_animation.play('Deathe')
 	print("Game Over! A player collided with an obstacle.")
+	
 	#get_tree().paused = true
 	#restart_button.visible = true
 
@@ -80,10 +82,15 @@ func _player_animation(character_side: String) -> void:
 	var player_animation = player_status[character_side]['character'].get_node('AnimationPlayer')
 
 	if player_status[character_side]['jump_time'] == 0: 
-		player_animation.play('Idle')
-		print('idle')
+		if character_side == 'left':
+			player_animation.play('Idle')
+		else:
+			player_animation.play('Idle2')
 	else:
-		player_animation.play('Jump')
+		if character_side == 'left':
+			player_animation.play('Jump')
+		else: 
+			player_animation.play('Jump2')
 		print('jump')
 		
 

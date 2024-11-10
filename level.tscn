@@ -1,7 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://cqhego4macfro"]
+[gd_scene load_steps=3 format=3 uid="uid://cqhego4macfro"]
 
 [ext_resource type="Script" path="res://road.gd" id="1_2j4ry"]
-[ext_resource type="Texture2D" uid="uid://n8g0hundgna8" path="res://icon.svg" id="2_878e0"]
 [ext_resource type="PackedScene" uid="uid://b4pmp7pxucsd1" path="res://car.tscn" id="3_vkqup"]
 
 [node name="Background" type="Node2D"]
@@ -11,32 +10,25 @@ metadata/_edit_horizontal_guides_ = [282.0]
 [node name="Road" type="Node2D" parent="."]
 
 [node name="RockSpawnLeft" type="Marker2D" parent="Road"]
-position = Vector2(346, -2)
+position = Vector2(897, 31)
 
 [node name="RockSpawnRight" type="Marker2D" parent="Road"]
-position = Vector2(1251, 4)
+position = Vector2(1326, 4)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Road"]
-
-[node name="Sprite2D - obstacle" type="Sprite2D" parent="Road"]
-modulate = Color(1, 0.2, 1, 1)
-position = Vector2(-388, -76)
-scale = Vector2(1.57812, 1.5)
-texture = ExtResource("2_878e0")
 
 [node name="RoadSpawnMarker" type="Marker2D" parent="Road"]
 z_index = -1
 position = Vector2(569, 604)
 
 [node name="LeftCharacter" parent="." instance=ExtResource("3_vkqup")]
-position = Vector2(0, 60)
+position = Vector2(532, 850)
 
 [node name="Sprite2D" parent="LeftCharacter" index="0"]
-modulate = Color(0.274465, 0.477129, 0.185307, 1)
 position = Vector2(361, 376)
 
 [node name="RightCharacter" parent="." instance=ExtResource("3_vkqup")]
-position = Vector2(797, 527)
+position = Vector2(1329, 1288)
 
 [connection signal="animation_finished" from="Road/AnimationPlayer" to="Road" method="_on_animation_player_animation_finished"]
 
