@@ -1,9 +1,98 @@
-[gd_scene load_steps=3 format=3 uid="uid://cqhego4macfro"]
+[gd_scene load_steps=11 format=3 uid="uid://cqhego4macfro"]
 
 [ext_resource type="Script" path="res://road.gd" id="1_2j4ry"]
+[ext_resource type="Texture2D" uid="uid://cms6ckyof12m1" path="res://Void Overlay.PNG" id="3_0rxjn"]
+[ext_resource type="Texture2D" uid="uid://6wlbj0obn3v3" path="res://SS-DIEDBUTTON.PNG" id="3_p67eu"]
 [ext_resource type="PackedScene" uid="uid://b4pmp7pxucsd1" path="res://car.tscn" id="3_vkqup"]
+[ext_resource type="Texture2D" uid="uid://b5ptx77ovij4n" path="res://logostart.png" id="5_lv4pt"]
+[ext_resource type="Texture2D" uid="uid://b4aaf0vetqqvu" path="res://SS-LEFT.PNG" id="6_okps0"]
+[ext_resource type="Texture2D" uid="uid://cbakcdquwxl7r" path="res://SS-RIGHT.PNG" id="7_xeb5m"]
 
-[node name="Background" type="Node2D"]
+[sub_resource type="Animation" id="Animation_rspv8"]
+resource_name = "new_animation"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D2:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_p67eu")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D2:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D2:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_mrdm5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D2:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_p67eu")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D2:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D2:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_thf7u"]
+_data = {
+"RESET": SubResource("Animation_mrdm5"),
+"new_animation": SubResource("Animation_rspv8")
+}
+
+[node name="Background" type="Node"]
 script = ExtResource("1_2j4ry")
 metadata/_edit_horizontal_guides_ = [282.0]
 
@@ -27,8 +116,41 @@ position = Vector2(532, 850)
 [node name="Sprite2D" parent="LeftCharacter" index="0"]
 position = Vector2(361, 376)
 
+[node name="AnimationPlayer2" parent="LeftCharacter" index="2"]
+libraries = {
+"": SubResource("AnimationLibrary_thf7u")
+}
+
+[node name="Sprite2D2" type="Sprite2D" parent="LeftCharacter"]
+visible = false
+texture = ExtResource("3_p67eu")
+centered = false
+hframes = 2
+
 [node name="RightCharacter" parent="." instance=ExtResource("3_vkqup")]
 position = Vector2(1329, 1288)
+
+[node name="UI" type="Sprite2D" parent="."]
+position = Vector2(1103, 976)
+texture = ExtResource("3_0rxjn")
+
+[node name="Sprite2D" type="Sprite2D" parent="UI"]
+
+[node name="Logo" type="Sprite2D" parent="UI"]
+position = Vector2(5, 837)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("5_lv4pt")
+
+[node name="LeftButton" type="Sprite2D" parent="UI"]
+position = Vector2(-311, 758)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("6_okps0")
+hframes = 2
+
+[node name="RightButton" type="Sprite2D" parent="UI/LeftButton"]
+position = Vector2(792.5, 7.5)
+texture = ExtResource("7_xeb5m")
+hframes = 2
 
 [connection signal="animation_finished" from="Road/AnimationPlayer" to="Road" method="_on_animation_player_animation_finished"]
 

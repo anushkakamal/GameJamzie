@@ -1,7 +1,7 @@
-extends Node2D
+extends Node
 
 var collision_y: int
-var total_jump_time = 70
+var total_jump_time = 2
 @onready
 var player_status = {
 	'left': {'character': get_tree().current_scene.get_node('LeftCharacter'), 'key_name': 'Jump_Left', 'jump_time': 0},
@@ -29,7 +29,7 @@ func _ready() -> void:
 		
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	$Road/RoadSpawnMarker.position.y += 3
+	$Road/RoadSpawnMarker.position.y += 5
 	if $Road/RoadSpawnMarker.position.y >= 1920:
 		$Road/RoadSpawnMarker.position.y -= 1920
 	
@@ -37,15 +37,15 @@ func _process(delta: float) -> void:
 		_place_rock()
 		var random = RandomNumberGenerator.new()
 		random.randomize()
-		spawner_time = random.randi_range(0,8) 
+		spawner_time = random.randi_range(1,4) 
 	spawner_time -= delta
 	
 
 	for character_side in player_status.keys():
 		_jumping_on(character_side)
-		_jump_count_down(character_side)
+		_jump_count_down(character_side, delta)
 		_player_animation(character_side)
-	
+
 
 func add_obstacle_to_platform():
 	obstacle_scene = preload('res://rock.tscn')
@@ -73,15 +73,15 @@ func _on_player_collision():
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	pass # Replace with function body.
 
-func _jump_count_down(character_side: String) -> void:
+func _jump_count_down(character_side: String, delta: float) -> void:
 	if player_status[character_side]['jump_time'] > 0:
-		player_status[character_side]['jump_time'] -= 1
+		player_status[character_side]['jump_time'] -= delta
 		print('character jumping: seconds', player_status[character_side]['jump_time'], 'side: ', character_side)
 	
 func _player_animation(character_side: String) -> void: 
 	var player_animation = player_status[character_side]['character'].get_node('AnimationPlayer')
 
-	if player_status[character_side]['jump_time'] == 0: 
+	if player_status[character_side]['jump_time'] <= 0: 
 		if character_side == 'left':
 			player_animation.play('Idle')
 		else:
